@@ -9,3 +9,6 @@ data/processed/*
 *.pth
 outputs/*
 phantom/outputs/*
+mano_v1_2
+epic
+pick_and_place

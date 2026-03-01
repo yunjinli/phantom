@@ -1,0 +1,6 @@
+data/
+*.zip
+*.tar.gz
+epic/
+pick_and_place/
+mano_v1_2/
