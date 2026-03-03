@@ -1,0 +1,23 @@
+services:
+  phantom-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    volumes:
+      - ..:/workspace/phantom:cached
+      - ~/.cache:/home/devuser/.cache
+    environment:
+      - TRANSFORMERS_CACHE=/home/devuser/.cache/huggingface/hub
+      - TORCH_HOME=/home/devuser/.cache/torch
+    network_mode: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: sleep infinity

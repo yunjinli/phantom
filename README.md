@@ -43,10 +43,14 @@ Both projects use data editing to convert human videos into “robotized” demo
 git clone --recursive git@github.com:MarionLepert/phantom.git
 ```
 
+### Local Installation
 2. Run the following script from the root directory to install the required conda environment.
 ```bash
 ./install.sh
 ```
+### Docker Installation
+Open VScode, with the root of this repository as the root of your VS Code workspace. You might need to adjust your `USER_ID` and `GROUP_ID` in [.env](./.devcontainer/.env), it is usually 1000 for single user linux machine. Then,
+enter `Ctrl + Shift + P` and select `Dev Containers: Rebuild and Reopen in Container` at the top of the screen. Once this step is completed, you are in the right environment for this project.
 
 3. Download the MANO hand models. To do so, go to the [MANO website](https://mano.is.tue.mpg.de/) and register to be able to download the models. Download the left and right hand models and move MANO_LEFT.pkl and MANO_RIGHT.pkl inside the `$ROOT_DIR/submodules/phantom-hamer/_DATA/data/mano/` folder.
 

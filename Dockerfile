@@ -4,6 +4,12 @@ FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
 # Prevent interactive prompts during apt installations
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
+RUN groupadd --gid $GROUP_ID devuser && \
+    useradd --uid $USER_ID --gid $GROUP_ID -m devuser
+    
 # FIX 1: Added libopengl0 to solve the missing libOpenGL.so.0 error
 RUN apt-get update && apt-get install -y \
     git wget unzip curl ninja-build \
@@ -34,10 +40,11 @@ RUN pip install --upgrade pip && \
     pip install "setuptools<70.0.0" "numpy<2.0.0" wheel
 
 # Set the default working directory
+RUN mkdir -p /workspace/phantom && chown -R $USER_ID:$GROUP_ID /workspace/phantom
+USER devuser
 WORKDIR /workspace/phantom
-
 # Copy your local repository into the container's workspace
-COPY . /workspace/phantom/
+COPY --chown=$USER_ID:$GROUP_ID . .
 
 RUN pip install -e submodules/sam2[notebooks]
 RUN pip install -e submodules/phantom-hamer[all] --no-build-isolation

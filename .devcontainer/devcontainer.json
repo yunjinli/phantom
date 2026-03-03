@@ -1,0 +1,21 @@
+{
+    "name": "Phantom Dev",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "phantom-app",
+    "workspaceFolder": "/workspace/phantom",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                // This syncs your local terminal settings to the container
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.shellIntegration.enabled": true,
+                "terminal.integrated.copyOnSelection": true
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.debugpy"
+            ]
+        }
+    },
+    "remoteUser": "devuser"
+}

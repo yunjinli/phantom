@@ -4,3 +4,7 @@ data/
 epic/
 pick_and_place/
 mano_v1_2/
+
+.devcontainer
+docker-compose.yml
+.env
